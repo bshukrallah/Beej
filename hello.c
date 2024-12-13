@@ -2,6 +2,11 @@
 #include <stdbool.h>
 #include "hello.h"
 
+struct car {
+    char *name;
+    float price;
+    int speed;
+};
 
 int main(void) {
     printf("Hello World\n");
@@ -65,8 +70,23 @@ int main(void) {
     int c[100] = {0}; //shortcut to fill 100 zeros in the array
 
 
-    //Pick up on chpt 7 Strings
-    // https://beej.us/guide/bgc/pdf/bgc_usl_c_1.pdf
+    struct car saturn = {"Saturn SL.2", 16000.99, 175};
+
+    printf("Car Name: %s\nCar Price: %f\nCarSpeed: %d\n", saturn.name, saturn.price, saturn.speed);
+
+    FILE *fp;
+    char line[1024];
+    int linecount = 0;
+    fp = fopen("quote.txt", "r");
+    while (fgets(line, sizeof line, fp) != NULL) {
+        printf("%d: %s", ++linecount, line);
+    } 
+    printf("\n");
+    fclose(fp);
+
+
+    //Pick up on: Pointers II: Arithmetic page 69
+    //https://beej.us/guide/bgc/pdf/bgc_usl_c_1.pdf
 }
 
 void add(int a, int b) {
